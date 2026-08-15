@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AadmiCare - Trusted Help for Home Tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-green: #0F8A3C;
+      --brand-orange: #F38218;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    /* Header & Square Box Logo */
+    header {
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .brand-logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      height: 100%;
+    }
+
+    .logo-square-box {
+      width: 64px;
+      height: 64px;
+      background-color: var(--bg-light);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .logo-square-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.3);
+    }
+
+    .brand-text {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      
+      background: linear-gradient(to bottom, var(--brand-green) 50%, var(--brand-orange) 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .header-cta {
+      background-color: #25D366;
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .header-cta:hover { transform: translateY(-2px); }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)), 
+                  url('hero-care.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 110px 24px;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(243, 130, 24, 0.25);
+      color: var(--brand-orange);
+      border: 1px solid var(--brand-orange);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
+    }
+
+    .hero h1 span { color: var(--brand-orange); }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--white);
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 24px;
+    }
+
+    .section-header { margin-bottom: 35px; }
+
+    .section-header h2 {
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 4px;
+      background: var(--brand-orange);
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+
+    /* Grid Layout */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.04);
+      border-top: 4px solid var(--brand-green);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    }
+
+    .service-card h3 {
+      color: var(--brand-orange);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .service-card ul { list-style: none; }
+
+    .service-card li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .service-card li::before {
+      content: "✓";
+      color: var(--brand-green);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Contact Section */
+    .contact-wrapper {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .contact-info {
+      background: linear-gradient(135deg, var(--brand-green) 0%, #095826 100%);
+      color: var(--white);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-info h2 { font-size: 1.8rem; margin-bottom: 16px; }
+    .contact-info p { color: rgba(255,255,255,0.85); margin-bottom: 30px; }
+    .info-item { margin-bottom: 20px; }
+
+    .info-item strong {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--brand-orange);
+      margin-bottom: 4px;
+    }
+
+    .info-item a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .contact-form { padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--brand-green);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--brand-orange);
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover { background-color: #d9700e; }
+
+    #formResponse {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      background: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { height: 60px; }
+      .logo-square-box { width: 48px; height: 48px; }
+      .brand-text { font-size: 1.8rem; }
+      .header-cta { padding: 8px 16px; font-size: 13px; }
+      .hero { padding: 70px 20px; }
+      .hero h1 { font-size: 2rem; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .contact-info, .contact-form { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo-wrapper">
+        <div class="logo-square-box">
+          <img src="file:///C:/Users/91970/Downloads/logo.png" alt="AadmiCare Symbol" />
+        </div>
+        <span class="brand-text">aadmicare</span>
+      </a>
+      <a href="https://wa.me/919700242442" class="header-cta" target="_blank">
+        <span>Chat on WhatsApp</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <span class="badge">Trusted Help for Home & Daily Tasks</span>
+      <h1>Reliable Care & Assistance <span>When You Need It</span></h1>
+      <p>From daily house tasks and essential banking support to dedicated elder care and illness recovery assistance.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    
+    <div class="section-header">
+      <h2>Our Core Services</h2>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Elderly & Recovery Support</h3>
+        <ul>
+          <li>Non-medical caregiving for seniors</li>
+          <li>Recovery assistance following illnesses</li>
+          <li>Mobility support & timely medication reminders</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Travel & Companionship</h3>
+        <ul>
+          <li>Escort services for doctor visits & hospital appointments</li>
+          <li>Companionship during family travel and outings</li>
+          <li>Safe local transportation assistance</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Outside Work & Banking</h3>
+        <ul>
+          <li>In-person banking & official document support</li>
+          <li>Bill payments & office paperwork tasks</li>
+          <li>Vegetable market, grocery & pharmacy shopping</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>In-Home Assistance</h3>
+        <ul>
+          <li>Light housekeeping & home organization</li>
+          <li>Meal preparation support</li>
+          <li>Managing electrician & plumber visits</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Block -->
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div>
+          <h2>Get in Touch</h2>
+          <p>Reach out to schedule a service or discuss custom assistance for your family's needs.</p>
+          
+          <div class="info-item">
+            <strong>Phone / WhatsApp</strong>
+            <a href="https://wa.me/919700242442">+91 97002 42442</a>
+          </div>
+
+          <div class="info-item">
+            <strong>Email Support</strong>
+            <a href="mailto:support@aadmicare.com">support@aadmicare.com</a>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; margin: 0; opacity: 0.8;">Available Monday – Saturday | 8:00 AM – 8:00 PM</p>
+      </div>
+
+      <div class="contact-form">
+        <form id="inquiryForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter full name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter contact number" required />
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <textarea id="service" rows="3" placeholder="Describe the care or assistance required..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Submit Inquiry</button>
+          <div id="formResponse"></div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 AadmiCare. All rights reserved.</p>
+  </footer>
+
+  <!-- Form Submission Script (Saves Data to Google Sheets) -->
+  <script>
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const responseDiv = document.getElementById('formResponse');
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value
+      };
+
+      submitBtn.innerText = 'Submitting...';
+      submitBtn.disabled = true;
+
+      // Replace this string with your Google Apps Script Web App URL
+      const googleScriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+      fetch(googleScriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        responseDiv.style.color = '#0F8A3C';
+        responseDiv.innerText = '✓ Thank you! Your inquiry has been received. We will contact you soon.';
+        responseDiv.style.display = 'block';
+        document.getElementById('inquiryForm').reset();
+      })
+      .catch(() => {
+        responseDiv.style.color = '#d9534f';
+        responseDiv.innerText = 'An error occurred. Please try again or reach out via WhatsApp.';
+        responseDiv.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.innerText = 'Submit Inquiry';
+        submitBtn.disabled = false;
+      });
+    });
+  </script>
+
+</body>
+</html>
