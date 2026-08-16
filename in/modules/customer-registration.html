@@ -1,0 +1,38 @@
+  <div class="modal-overlay" id="customerModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('customerModal')">&times;</button>
+      <h2>Customer Registration</h2>
+      <p>Create a customer account to request personalized care services.</p>
+
+      <form id="customerForm">
+        <div class="form-group">
+          <label for="cFullName">Full Name</label>
+          <input type="text" id="cFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cPhone">Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="cEmail">Email Address</label>
+            <input type="email" id="cEmail" placeholder="e.g. name@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cCity">City / Locality</label>
+          <input type="text" id="cCity" placeholder="Your current location" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cService">Primary Service Needed</label>
+          <input type="text" id="cService" placeholder="e.g. Elder care, Banking support" required />
+        </div>
+
+        <button type="submit" class="btn-submit" id="customerSubmitBtn">Register Customer</button>
+        <div id="customerResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>

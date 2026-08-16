@@ -1,0 +1,52 @@
+  <div class="modal-overlay" id="memberModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('memberModal')">&times;</button>
+      <h2>Care Member Registration</h2>
+      <p>Register as a volunteer or care staff member with AadmiCare.</p>
+
+      <form id="memberForm">
+        <div class="form-group">
+          <label for="mFullName">Full Name</label>
+          <input type="text" id="mFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mAge">Age</label>
+            <input type="number" id="mAge" min="18" max="99" placeholder="e.g. 28" required />
+          </div>
+          <div class="form-group">
+            <label for="mGender">Gender</label>
+            <select id="mGender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mPhone">Phone Number</label>
+            <input type="tel" id="mPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="mRole">Registering As</label>
+            <select id="mRole" required>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Care Member">Care Member (Staff)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mAddress">Address / Location</label>
+          <textarea id="mAddress" rows="2" placeholder="Locality, city, area" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="memberSubmitBtn">Register as Care Member</button>
+        <div id="memberResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>
