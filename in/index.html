@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AadmiCare - Trusted Help for Home Tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo-wrapper">
+        <div class="logo-square-box">
+          <img src="logo.png" alt="AadmiCare Symbol" />
+        </div>
+        <span class="brand-text">aadmicare</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="icon-btn" onclick="openModal('memberModal')" title="Join as Care Member" aria-label="Join as Care Member">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <line x1="19" y1="8" x2="19" y2="14"></line>
+            <line x1="16" y1="11" x2="22" y2="11"></line>
+          </svg>
+        </button>
+
+        <button class="icon-btn" onclick="openModal('customerModal')" title="Register Customer" aria-label="Register Customer">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <a href="https://wa.me/919700242442" class="icon-btn icon-btn-whatsapp" target="_blank" title="WhatsApp" aria-label="Chat on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.28-1.38a9.9 9.9 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.45 9.9-9.91.01-5.46-4.44-9.91-9.91-9.91zm0 18.14h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.21 8.21 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <span class="badge">Trusted Help for Home & Daily Tasks</span>
+      <h1>Reliable Care & Assistance <span>When You Need It</span></h1>
+      <p>From daily house tasks and essential banking support to dedicated elder care and illness recovery assistance.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    
+    <div class="section-header">
+      <h2>Our Core Services</h2>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Elderly & Recovery Support</h3>
+        <ul>
+          <li>Non-medical caregiving for seniors</li>
+          <li>Recovery assistance following illnesses</li>
+          <li>Mobility support & timely medication reminders</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Travel & Companionship</h3>
+        <ul>
+          <li>Escort services for doctor visits & hospital appointments</li>
+          <li>Companionship during family travel and outings</li>
+          <li>Safe local transportation assistance</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Outside Work & Banking</h3>
+        <ul>
+          <li>In-person banking & official document support</li>
+          <li>Bill payments & office paperwork tasks</li>
+          <li>Vegetable market, grocery & pharmacy shopping</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>In-Home Assistance</h3>
+        <ul>
+          <li>Light housekeeping & home organization</li>
+          <li>Meal preparation support</li>
+          <li>Managing electrician & plumber visits</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service CTA Buttons -->
+    <div class="service-cta-row">
+      <button type="button" class="btn-cta btn-cta-outline" onclick="openModal('memberModal')">Register Member Service</button>
+      <button type="button" class="btn-cta btn-cta-solid" onclick="openModal('customerModal')">Book Service</button>
+    </div>
+
+    <!-- Contact / Inquiry Block (loaded from modules/inquiry-form.html) -->
+    <div id="inquiry-form-mount"></div>
+
+  </main>
+
+  <!-- Care Member Registration Modal (loaded from modules/member-registration.html) -->
+  <div id="member-modal-mount"></div>
+
+  <!-- Customer Registration Modal (loaded from modules/customer-registration.html) -->
+  <div id="customer-modal-mount"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 AadmiCare. All rights reserved.</p>
+  </footer>
+
+  <!-- Site Configuration (Google Apps Script URLs — edit this file only to update endpoints) -->
+  <script src="js/config.js"></script>
+
+  <!-- Form Submission & Modal Handling Script -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
