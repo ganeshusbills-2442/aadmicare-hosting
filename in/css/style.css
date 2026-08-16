@@ -462,26 +462,29 @@
       font-family: inherit;
     }
 
-    .btn-cta-outline {
-      background: transparent;
+    /* Both CTA buttons start with green outline & white background */
+    .btn-cta-outline,
+    .btn-cta-solid {
+      background: var(--white);
       color: var(--brand-green);
       border: 2px solid var(--brand-green);
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .btn-cta-outline:hover {
-      background: var(--brand-green);
-      color: var(--white);
-    }
-
-    .btn-cta-solid {
-      background: var(--brand-green);
-      color: var(--white);
-      box-shadow: 0 8px 20px rgba(15, 138, 60, 0.25);
-    }
-
+    /* Both CTA buttons turn full green on mouse hover */
+    .btn-cta-outline:hover,
     .btn-cta-solid:hover {
-      background: #0d7834;
+      background: var(--brand-green);
+      color: var(--white);
+      border-color: var(--brand-green);
       transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 138, 60, 0.25);
     }
 
     /* Opted Services — Hierarchical Checkbox Tree (in Member / Customer modals) */
