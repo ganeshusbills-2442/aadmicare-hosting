@@ -1,0 +1,122 @@
+  <div class="modal-overlay" id="customerModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('customerModal')">&times;</button>
+      <h2>Customer Registration</h2>
+      <p>Create a customer account to request personalized care services.</p>
+
+      <form id="customerForm">
+        <div class="form-group">
+          <label for="cFullName">Full Name</label>
+          <input type="text" id="cFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cPhone">Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="cEmail">Email Address</label>
+            <input type="email" id="cEmail" placeholder="e.g. name@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cCity">City / Locality</label>
+          <input type="text" id="cCity" placeholder="Your current location" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cService">Primary Service Needed</label>
+          <input type="text" id="cService" placeholder="e.g. Elder care, Banking support" required />
+        </div>
+
+        <div class="form-group services-select" id="cServicesSelect">
+          <label class="services-label">Opted Services (select any that apply)</label>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="cCat1" data-code="1" value="1. Elderly &amp; Recovery Support" />
+              1. Elderly & Recovery Support
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem11" data-code="1.1" value="1.1 Non-medical caregiving for seniors" />
+                <span>1.1 Non-medical caregiving for seniors</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem12" data-code="1.2" value="1.2 Recovery assistance following illnesses" />
+                <span>1.2 Recovery assistance following illnesses</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem13" data-code="1.3" value="1.3 Mobility support &amp; timely medication reminders" />
+                <span>1.3 Mobility support & timely medication reminders</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="cCat2" data-code="2" value="2. Travel &amp; Companionship" />
+              2. Travel & Companionship
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem21" data-code="2.1" value="2.1 Escort services for doctor visits &amp; hospital appointments" />
+                <span>2.1 Escort services for doctor visits & hospital appointments</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem22" data-code="2.2" value="2.2 Companionship during family travel and outings" />
+                <span>2.2 Companionship during family travel and outings</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem23" data-code="2.3" value="2.3 Safe local transportation assistance" />
+                <span>2.3 Safe local transportation assistance</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="cCat3" data-code="3" value="3. Outside Work &amp; Banking" />
+              3. Outside Work & Banking
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem31" data-code="3.1" value="3.1 In-person banking &amp; official document support" />
+                <span>3.1 In-person banking & official document support</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem32" data-code="3.2" value="3.2 Bill payments &amp; office paperwork tasks" />
+                <span>3.2 Bill payments & office paperwork tasks</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem33" data-code="3.3" value="3.3 Vegetable market, grocery &amp; pharmacy shopping" />
+                <span>3.3 Vegetable market, grocery & pharmacy shopping</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="cCat4" data-code="4" value="4. In-Home Assistance" />
+              4. In-Home Assistance
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem41" data-code="4.1" value="4.1 Light housekeeping &amp; home organization" />
+                <span>4.1 Light housekeeping & home organization</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem42" data-code="4.2" value="4.2 Meal preparation support" />
+                <span>4.2 Meal preparation support</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="cItem43" data-code="4.3" value="4.3 Managing electrician &amp; plumber visits" />
+                <span>4.3 Managing electrician & plumber visits</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="customerSubmitBtn">Register Customer</button>
+        <div id="customerResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>
