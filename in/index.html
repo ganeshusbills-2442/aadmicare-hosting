@@ -635,9 +635,9 @@
 
   <!-- Form Submission & Modal Handling Script -->
   <script>
-    const INQUIRY_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbyfh7AhPLmec8YlV3l66Dpt7zGtZfJLmX2KR-JtgRTSiTEERMJgzigj7gZG1vNEAtcjHA/exec';
-    const MEMBER_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbzRGu2ct_kBzund_LbZvb6oZpvoM9VvGkA_uPSPEPbMFQPoMH6YgEglv7dKvcp_hn7q5w/exec';
-    const CUSTOMER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0ft6UDfkNdIMOjRPly_n_pfmOrpOslRhKmwolWde3FBetzKhkfNuLr0rBWKKXfRhmwQ/exec';
+    const INQUIRY_SCRIPT_URL  = 'https://script.google.com/macros/s/.../exec';
+    const MEMBER_SCRIPT_URL   = 'https://script.google.com/macros/s/.../exec';
+    const CUSTOMER_SCRIPT_URL = 'https://script.google.com/macros/s/.../exec';
 
     // Modal Control Functions
     function openModal(id) {
@@ -663,10 +663,11 @@
       btn.innerText = 'Submitting...';
       btn.disabled = true;
 
+      // Send payload as text/plain to prevent Google Apps Script from dropping the POST body
       fetch(url, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       })
       .then(() => {
@@ -675,7 +676,7 @@
         resDiv.style.display = 'block';
         if (formId) document.getElementById(formId).reset();
       })
-      .catch(() => {
+      .catch((err) => {
         resDiv.style.color = '#d9534f';
         resDiv.innerText = 'An error occurred. Please try again.';
         resDiv.style.display = 'block';
