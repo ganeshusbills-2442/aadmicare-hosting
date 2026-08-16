@@ -1,4 +1,4 @@
-    :root {
+:root {
       --brand-green: #0F8A3C;
       --brand-orange: #F38218;
       --text-dark: #1E293B;
@@ -353,7 +353,7 @@
 
     .btn-submit {
       width: 100%;
-      background-color: var(--brand-orange);
+      background-color: var(--brand-green);
       color: var(--white);
       border: none;
       padding: 14px;
@@ -364,7 +364,7 @@
       transition: background-color 0.2s;
     }
 
-    .btn-submit:hover { background-color: #d9700e; }
+    .btn-submit:hover { background-color: #0d7834; }
 
     .form-response-msg {
       margin-top: 15px;
@@ -474,13 +474,13 @@
     }
 
     .btn-cta-solid {
-      background: var(--brand-orange);
+      background: var(--brand-green);
       color: var(--white);
-      box-shadow: 0 8px 20px rgba(243, 130, 24, 0.25);
+      box-shadow: 0 8px 20px rgba(15, 138, 60, 0.25);
     }
 
     .btn-cta-solid:hover {
-      background: #d9700e;
+      background: #0d7834;
       transform: translateY(-2px);
     }
 
