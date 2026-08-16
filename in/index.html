@@ -80,22 +80,43 @@
       font-weight: 800;
       letter-spacing: -0.5px;
       line-height: 1;
-      
       background: linear-gradient(to bottom, var(--brand-green) 50%, var(--brand-orange) 50%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-fill-color: transparent;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-outline {
+      background: transparent;
+      color: var(--brand-green);
+      border: 1.5px solid var(--brand-green);
+      padding: 9px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-outline:hover {
+      background: var(--brand-green);
+      color: var(--white);
     }
 
     .header-cta {
       background-color: #25D366;
       color: var(--white);
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -278,7 +299,7 @@
       color: var(--text-dark);
     }
 
-    .form-group input, .form-group textarea {
+    .form-group input, .form-group select, .form-group textarea {
       width: 100%;
       padding: 12px 16px;
       border: 1px solid #E2E8F0;
@@ -287,9 +308,10 @@
       font-size: 0.95rem;
     }
 
-    .form-group input:focus, .form-group textarea:focus {
-      outline: none;
-      border-color: var(--brand-green);
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
     .btn-submit {
@@ -307,12 +329,64 @@
 
     .btn-submit:hover { background-color: #d9700e; }
 
-    #formResponse {
+    .form-response-msg {
       margin-top: 15px;
       font-size: 0.95rem;
       font-weight: 600;
       text-align: center;
       display: none;
+    }
+
+    /* Modal Overlay Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-card {
+      background: var(--white);
+      width: 100%;
+      max-width: 550px;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-card h2 {
+      color: var(--brand-green);
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
     }
 
     footer {
@@ -325,14 +399,15 @@
     }
 
     @media (max-width: 768px) {
-      .nav-container { height: 60px; }
+      .nav-container { height: auto; padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
       .logo-square-box { width: 48px; height: 48px; }
       .brand-text { font-size: 1.8rem; }
-      .header-cta { padding: 8px 16px; font-size: 13px; }
+      .header-actions { flex-wrap: wrap; width: 100%; justify-content: flex-start; }
       .hero { padding: 70px 20px; }
       .hero h1 { font-size: 2rem; }
       .contact-wrapper { grid-template-columns: 1fr; }
       .contact-info, .contact-form { padding: 30px 20px; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -347,9 +422,14 @@
         </div>
         <span class="brand-text">aadmicare</span>
       </a>
-      <a href="https://wa.me/919700242442" class="header-cta" target="_blank">
-        <span>Chat on WhatsApp</span>
-      </a>
+
+      <div class="header-actions">
+        <button class="btn-nav-outline" onclick="openModal('memberModal')">Join as Care Member</button>
+        <button class="btn-nav-outline" onclick="openModal('customerModal')">Register Customer</button>
+        <a href="https://wa.me/919700242442" class="header-cta" target="_blank">
+          <span>WhatsApp</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -408,7 +488,7 @@
       </div>
     </div>
 
-    <!-- Contact Block -->
+    <!-- Contact / Inquiry Block -->
     <div class="contact-wrapper">
       <div class="contact-info">
         <div>
@@ -446,60 +526,202 @@
             <textarea id="service" rows="3" placeholder="Describe the care or assistance required..." required></textarea>
           </div>
 
-          <button type="submit" class="btn-submit" id="submitBtn">Submit Inquiry</button>
-          <div id="formResponse"></div>
+          <button type="submit" class="btn-submit" id="inquirySubmitBtn">Submit Inquiry</button>
+          <div id="inquiryResponse" class="form-response-msg"></div>
         </form>
       </div>
     </div>
 
   </main>
 
+  <!-- Care Member Registration Modal Overlay -->
+  <div class="modal-overlay" id="memberModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('memberModal')">&times;</button>
+      <h2>Care Member Registration</h2>
+      <p>Register as a volunteer or care staff member with AadmiCare.</p>
+
+      <form id="memberForm">
+        <div class="form-group">
+          <label for="mFullName">Full Name</label>
+          <input type="text" id="mFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mAge">Age</label>
+            <input type="number" id="mAge" min="18" max="99" placeholder="e.g. 28" required />
+          </div>
+          <div class="form-group">
+            <label for="mGender">Gender</label>
+            <select id="mGender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mPhone">Phone Number</label>
+            <input type="tel" id="mPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="mRole">Registering As</label>
+            <select id="mRole" required>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Care Member">Care Member (Staff)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mAddress">Address / Location</label>
+          <textarea id="mAddress" rows="2" placeholder="Locality, city, area" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="memberSubmitBtn">Register as Care Member</button>
+        <div id="memberResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Customer Registration Modal Overlay -->
+  <div class="modal-overlay" id="customerModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('customerModal')">&times;</button>
+      <h2>Customer Registration</h2>
+      <p>Create a customer account to request personalized care services.</p>
+
+      <form id="customerForm">
+        <div class="form-group">
+          <label for="cFullName">Full Name</label>
+          <input type="text" id="cFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cPhone">Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="cEmail">Email Address</label>
+            <input type="email" id="cEmail" placeholder="e.g. name@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cCity">City / Locality</label>
+          <input type="text" id="cCity" placeholder="Your current location" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cService">Primary Service Needed</label>
+          <input type="text" id="cService" placeholder="e.g. Elder care, Banking support" required />
+        </div>
+
+        <button type="submit" class="btn-submit" id="customerSubmitBtn">Register Customer</button>
+        <div id="customerResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 AadmiCare. All rights reserved.</p>
   </footer>
 
-  <!-- Form Submission Script (Saves Data to Google Sheets) -->
+  <!-- Form Submission & Modal Handling Script -->
   <script>
+    const INQUIRY_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbyfh7AhPLmec8YlV3l66Dpt7zGtZfJLmX2KR-JtgRTSiTEERMJgzigj7gZG1vNEAtcjHA/exec';
+    const MEMBER_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbzRGu2ct_kBzund_LbZvb6oZpvoM9VvGkA_uPSPEPbMFQPoMH6YgEglv7dKvcp_hn7q5w/exec';
+    const CUSTOMER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0ft6UDfkNdIMOjRPly_n_pfmOrpOslRhKmwolWde3FBetzKhkfNuLr0rBWKKXfRhmwQ/exec';
+
+    // Modal Control Functions
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Close Modal on Background Click
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+      }
+    };
+
+    // Helper Function to Submit Form Data
+    function submitToGoogleSheet(url, payload, btnId, responseId, successMsg, formId) {
+      const btn = document.getElementById(btnId);
+      const resDiv = document.getElementById(responseId);
+
+      btn.innerText = 'Submitting...';
+      btn.disabled = true;
+
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        resDiv.style.color = '#0F8A3C';
+        resDiv.innerText = successMsg;
+        resDiv.style.display = 'block';
+        if (formId) document.getElementById(formId).reset();
+      })
+      .catch(() => {
+        resDiv.style.color = '#d9534f';
+        resDiv.innerText = 'An error occurred. Please try again.';
+        resDiv.style.display = 'block';
+      })
+      .finally(() => {
+        btn.innerText = 'Submitted';
+        btn.disabled = false;
+      });
+    }
+
+    // Handle 1: Inquiry Form
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const responseDiv = document.getElementById('formResponse');
-      
-      const formData = {
+      const payload = {
         name: document.getElementById('name').value,
         phone: document.getElementById('phone').value,
         service: document.getElementById('service').value
       };
+      submitToGoogleSheet(INQUIRY_SCRIPT_URL, payload, 'inquirySubmitBtn', 'inquiryResponse', '✓ Inquiry received! We will contact you soon.', 'inquiryForm');
+    });
 
-      submitBtn.innerText = 'Submitting...';
-      submitBtn.disabled = true;
+    // Handle 2: Member Form
+    document.getElementById('memberForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const payload = {
+        fullName: document.getElementById('mFullName').value,
+        age: document.getElementById('mAge').value,
+        gender: document.getElementById('mGender').value,
+        phone: document.getElementById('mPhone').value,
+        role: document.getElementById('mRole').value,
+        address: document.getElementById('mAddress').value
+      };
+      submitToGoogleSheet(MEMBER_SCRIPT_URL, payload, 'memberSubmitBtn', 'memberResponse', '✓ Member registration successful!', 'memberForm');
+    });
 
-      // Replace this string with your Google Apps Script Web App URL
-      const googleScriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
-
-      fetch(googleScriptUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-      .then(() => {
-        responseDiv.style.color = '#0F8A3C';
-        responseDiv.innerText = '✓ Thank you! Your inquiry has been received. We will contact you soon.';
-        responseDiv.style.display = 'block';
-        document.getElementById('inquiryForm').reset();
-      })
-      .catch(() => {
-        responseDiv.style.color = '#d9534f';
-        responseDiv.innerText = 'An error occurred. Please try again or reach out via WhatsApp.';
-        responseDiv.style.display = 'block';
-      })
-      .finally(() => {
-        submitBtn.innerText = 'Submit Inquiry';
-        submitBtn.disabled = false;
-      });
+    // Handle 3: Customer Form
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const payload = {
+        fullName: document.getElementById('cFullName').value,
+        phone: document.getElementById('cPhone').value,
+        email: document.getElementById('cEmail').value,
+        city: document.getElementById('cCity').value,
+        preferredService: document.getElementById('cService').value
+      };
+      submitToGoogleSheet(CUSTOMER_SCRIPT_URL, payload, 'customerSubmitBtn', 'customerResponse', '✓ Customer account created!', 'customerForm');
     });
   </script>
 
