@@ -48,6 +48,15 @@
     }
   });
 
+  // ---------- Helper: collect checked "Opted Services" checkboxes within a form ----------
+  // Returns a single semicolon-separated string (not comma-separated, since several
+  // service labels already contain commas, e.g. "Vegetable market, grocery & pharmacy...").
+  function getOptedServices(formEl) {
+    if (!formEl) return '';
+    const boxes = formEl.querySelectorAll('.opted-service:checked');
+    return Array.from(boxes).map(function (cb) { return cb.value; }).join('; ');
+  }
+
   // ---------- Helper: submit a form's data to a Google Sheet endpoint ----------
   function submitToGoogleSheet(url, payload, btnId, responseId, successMsg, formId, modalId) {
     const btn = document.getElementById(btnId);
@@ -121,7 +130,8 @@
         gender: document.getElementById('mGender').value,
         phone: document.getElementById('mPhone').value,
         role: document.getElementById('mRole').value,
-        address: document.getElementById('mAddress').value
+        address: document.getElementById('mAddress').value,
+        optedServices: getOptedServices(form)
       };
       submitToGoogleSheet(
         CFG.MEMBER_SCRIPT_URL, payload,
@@ -142,7 +152,8 @@
         phone: document.getElementById('cPhone').value,
         email: document.getElementById('cEmail').value,
         city: document.getElementById('cCity').value,
-        preferredService: document.getElementById('cService').value
+        preferredService: document.getElementById('cService').value,
+        optedServices: getOptedServices(form)
       };
       submitToGoogleSheet(
         CFG.CUSTOMER_SCRIPT_URL, payload,
