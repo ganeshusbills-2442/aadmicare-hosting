@@ -1,0 +1,136 @@
+  <div class="modal-overlay" id="memberModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('memberModal')">&times;</button>
+      <h2>Care Member Registration</h2>
+      <p>Register as a volunteer or care staff member with AadmiCare.</p>
+
+      <form id="memberForm">
+        <div class="form-group">
+          <label for="mFullName">Full Name</label>
+          <input type="text" id="mFullName" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mAge">Age</label>
+            <input type="number" id="mAge" min="18" max="99" placeholder="e.g. 28" required />
+          </div>
+          <div class="form-group">
+            <label for="mGender">Gender</label>
+            <select id="mGender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mPhone">Phone Number</label>
+            <input type="tel" id="mPhone" placeholder="Enter contact number" required />
+          </div>
+          <div class="form-group">
+            <label for="mRole">Registering As</label>
+            <select id="mRole" required>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Care Member">Care Member (Staff)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mAddress">Address / Location</label>
+          <textarea id="mAddress" rows="2" placeholder="Locality, city, area" required></textarea>
+        </div>
+
+        <div class="form-group services-select" id="mServicesSelect">
+          <label class="services-label">Opted Services (select any that apply)</label>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="mCat1" data-code="1" value="1. Elderly &amp; Recovery Support" />
+              1. Elderly & Recovery Support
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem11" data-code="1.1" value="1.1 Non-medical caregiving for seniors" />
+                <span>1.1 Non-medical caregiving for seniors</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem12" data-code="1.2" value="1.2 Recovery assistance following illnesses" />
+                <span>1.2 Recovery assistance following illnesses</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem13" data-code="1.3" value="1.3 Mobility support &amp; timely medication reminders" />
+                <span>1.3 Mobility support & timely medication reminders</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="mCat2" data-code="2" value="2. Travel &amp; Companionship" />
+              2. Travel & Companionship
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem21" data-code="2.1" value="2.1 Escort services for doctor visits &amp; hospital appointments" />
+                <span>2.1 Escort services for doctor visits & hospital appointments</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem22" data-code="2.2" value="2.2 Companionship during family travel and outings" />
+                <span>2.2 Companionship during family travel and outings</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem23" data-code="2.3" value="2.3 Safe local transportation assistance" />
+                <span>2.3 Safe local transportation assistance</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="mCat3" data-code="3" value="3. Outside Work &amp; Banking" />
+              3. Outside Work & Banking
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem31" data-code="3.1" value="3.1 In-person banking &amp; official document support" />
+                <span>3.1 In-person banking & official document support</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem32" data-code="3.2" value="3.2 Bill payments &amp; office paperwork tasks" />
+                <span>3.2 Bill payments & office paperwork tasks</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem33" data-code="3.3" value="3.3 Vegetable market, grocery &amp; pharmacy shopping" />
+                <span>3.3 Vegetable market, grocery & pharmacy shopping</span>
+              </label>
+            </div>
+          </div>
+          <div class="service-category">
+            <label class="service-category-header">
+              <input type="checkbox" class="opted-service" id="mCat4" data-code="4" value="4. In-Home Assistance" />
+              4. In-Home Assistance
+            </label>
+            <div class="service-items">
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem41" data-code="4.1" value="4.1 Light housekeeping &amp; home organization" />
+                <span>4.1 Light housekeeping & home organization</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem42" data-code="4.2" value="4.2 Meal preparation support" />
+                <span>4.2 Meal preparation support</span>
+              </label>
+              <label class="service-item-row">
+                <input type="checkbox" class="opted-service" id="mItem43" data-code="4.3" value="4.3 Managing electrician &amp; plumber visits" />
+                <span>4.3 Managing electrician & plumber visits</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="memberSubmitBtn">Register as Care Member</button>
+        <div id="memberResponse" class="form-response-msg"></div>
+      </form>
+    </div>
+  </div>
